@@ -14,10 +14,10 @@ export default class MessagesList extends Component {
   componentDidMount () {
     axios.get('/api/messages')
       .then(res => res.data)
-      .then(messages =>
+      .then(messages => {
         const action = gotMessagesFromServer(messages);
         store.dispatch(action);
-      );
+      });
 
     this.unsubscribe = store.subscribe( () => this.setState(store.getState()) )
   }
