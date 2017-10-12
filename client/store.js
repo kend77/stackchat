@@ -37,6 +37,7 @@ function reducer (prevState = initialState, action) {
       return newState;
     case GOT_NEW_MESSAGE_FROM_SERVER:
       newState.messages = newState.messages.concat(message);
+      return newState;
     default:
       return prevState;
   }
