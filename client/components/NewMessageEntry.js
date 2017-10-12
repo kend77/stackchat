@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import store, {writeMessage, gotNewMessageFromServer} from '../store';
+import store, {writeMessage, gotNewMessageFromServer, postMessage} from '../store';
 import socket from '../socket';
 
 export default class NewMessageEntry extends Component {
@@ -10,7 +10,6 @@ export default class NewMessageEntry extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
   }
@@ -25,22 +24,13 @@ export default class NewMessageEntry extends Component {
   }
 
   handleSubmit(event) {
-    // console.log(this.props.channelId)
+    console.log('name is here', this.state.name)
     event.preventDefault();
-    axios.post('/api/messages', {
-      channelId: this.props.channelId,
-      content: this.state.newMessageEntry
-    })
-    .then(res => res.data)
-    .then(message => {
-      store.dispatch(gotNewMessageFromServer(message));
-      socket.emit('new-message', message);
-    })
+    store.dispatch(postMessage(this.props.channelId, this.state.newMessageEntry, this.state.name))
     store.dispatch(writeMessage(""));
   }
 
   render () {
-
     return (
       <form onSubmit={this.handleSubmit} id="new-message-form">
         <div className="input-group input-group-lg">

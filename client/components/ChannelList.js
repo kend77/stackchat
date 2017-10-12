@@ -31,19 +31,19 @@ export default class ChannelList extends Component {
         <li>
           <NavLink to={RANDOM_CHANNEL} activeClassName="active">
             <span># really_random</span>
-            <span className="badge">{ (messages.filter(message => message.channelId === 2).length) }</span>
+            <span className="badge">{ (messages.filter(message => message.channelId === 1).length) }</span>
           </NavLink>
         </li>
         <li>
           <NavLink to={GENERAL_CHANNEL} activeClassName="active">
             <span># generally_speaking</span>
-            <span className="badge">{ (messages.filter(message => message.channelId === 3).length) }</span>
+            <span className="badge">{ (messages.filter(message => message.channelId === 2).length) }</span>
           </NavLink>
         </li>
         <li>
           <NavLink to={DOGS_CHANNEL} activeClassName="active">
             <span># dogs_of_fullstack</span>
-            <span className="badge">{ (messages.filter(message => message.channelId === 1).length) }</span>
+            <span className="badge">{ (messages.filter(message => message.channelId === 3).length) }</span>
           </NavLink>
         </li>
         <li>
